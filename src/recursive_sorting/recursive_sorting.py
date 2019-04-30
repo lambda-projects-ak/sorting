@@ -1,72 +1,44 @@
-
-ms_data = [1, 6, 2, 8, 2, 4]
-
-
-# def split_array(arr):
-#     if len(arr) > 1:
-#         mid = len(arr) // 2
-#         left = arr[:mid]
-#         right = arr[mid:]
-
-#         print(left)
-#         split_array(left)
-#         print(right)
-#         split_array(right)
-
-
-data_1 = [1, 2, 3]
-data_2 = [4, 5, 6]
-
 # TO-DO: complete the helper function below to merge 2 sorted arrays
+
+ms_data = [6, 1, 2, 8, 4, 3, 2, 1, 6, 8, 1]
 
 
 def merge(arrA, arrB):
     elements = len(arrA) + len(arrB)
     merged_arr = [0] * elements
     # TO-DO
+    print(arrA, arrB)
 
-    for i in merged_arr:
-      # make sure to pop item from list as you go or keep track of what element you are looking at
-        if arrA[i] < arrB[i]:
-            # all elements in arrA have been merged, put next element in arrB into merged array
-            merged_arr.insert(arrA[i], i)
-        elif False:
-            # all elements in arrB have been merged, put next element in arrA into merged array
-            pass
-        elif False:
-            # next element in arrA smaller, add to merged array
-            pass
+    current_arrA = 0
+    current_arrB = 0
+
+    for i in range(0, len(merged_arr)):
+        if len(arrA) - 1 < current_arrA:
+            merged_arr[i] = arrB[current_arrB]
+            current_arrB += 1
+        elif len(arrB) - 1 < current_arrB:
+            merged_arr[i] = arrA[current_arrA]
+            current_arrA += 1
+        elif arrA[current_arrA] > arrB[current_arrB]:
+            merged_arr[i] = arrB[current_arrB]
+            current_arrB += 1
         else:
-            # next element in arrB smaller, add to merged array
-            pass
+            merged_arr[i] = arrA[current_arrA]
+            current_arrA += 1
+
+        print(merged_arr)
 
     return merged_arr
-
-
-# print(merge(data_1, data_2))
 
 # TO-DO: implement the Merge Sort function below USING RECURSION
 
 
 def merge_sort(arr):
     # TO-DO
-    # [1, 6, 2, 8, 2, 4]
     if len(arr) > 1:
-        mid = len(arr) // 2
-        left = arr[:mid]
-        right = arr[mid:]
-        merge_sort(left)
-        merge_sort(right)
-        # [1, 6, 2]
-        # [1]
-        # [6, 2]
-        # [6]
-        # [2]
-        # [8, 2, 4]
-        # [8]
-        # [2, 4]
-        # [2]
-        # [4]
+        left = merge_sort(arr[: (len(arr) // 2)])
+        right = merge_sort(arr[(len(arr) // 2):])
+
         arr = merge(left, right)
 
     return arr
@@ -85,6 +57,7 @@ print(merge_sort(ms_data))
 #
 #
 #
+
 
 # STRETCH: implement an in-place merge sort algorithm
 
