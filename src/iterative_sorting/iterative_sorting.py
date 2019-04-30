@@ -92,3 +92,26 @@ print(bubble_sort(bubble_test))
 # def count_sort(arr, maximum=-1):
 
 #     return arr
+
+
+# Bubble Sort Solutions from Demo
+def recursive_sort(arr):
+    swapped = False
+    for i in range(0, len(arr) - 1):
+        if arr[i+1] < arr[i]:
+            arr[i], arr[i+1] = arr[i+1], arr[i]
+            swapped = True
+    if swapped:
+        return bubble_sort(arr)
+    return arr
+
+
+def iterative_bubble_sort(arr):
+    swapped = False
+    for i in range(0, len(arr) - 1):
+        if arr[i+1] < arr[i]:
+            arr[i], arr[i+1] = arr[i+1], arr[i]
+            swapped = True
+    if swapped:
+        return bubble_sort(arr)
+    return arr
