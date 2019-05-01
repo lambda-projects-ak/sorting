@@ -6,25 +6,22 @@ ms_data = [6, 1, 2, 8, 4, 3, 2, 1, 6, 8, 1]
 def merge(arrA, arrB):
     elements = len(arrA) + len(arrB)
     merged_arr = [0] * elements
-    # TO-DO
-    print(arrA, arrB)
-
-    current_arrA = 0
-    current_arrB = 0
+    ia = 0
+    ib = 0
 
     for i in range(0, len(merged_arr)):
-        if len(arrA) - 1 < current_arrA:
-            merged_arr[i] = arrB[current_arrB]
-            current_arrB += 1
-        elif len(arrB) - 1 < current_arrB:
-            merged_arr[i] = arrA[current_arrA]
-            current_arrA += 1
-        elif arrA[current_arrA] > arrB[current_arrB]:
-            merged_arr[i] = arrB[current_arrB]
-            current_arrB += 1
+        if len(arrA) <= ia:
+            merged_arr[i] = arrB[ib]
+            ib += 1
+        elif len(arrB) <= ib:
+            merged_arr[i] = arrA[ia]
+            ia += 1
+        elif arrA[ia] > arrB[ib]:
+            merged_arr[i] = arrB[ib]
+            ib += 1
         else:
-            merged_arr[i] = arrA[current_arrA]
-            current_arrA += 1
+            merged_arr[i] = arrA[ia]
+            ia += 1
 
         print(merged_arr)
 
@@ -38,7 +35,6 @@ def merge_sort(arr):
     if len(arr) > 1:
         left = merge_sort(arr[: (len(arr) // 2)])
         right = merge_sort(arr[(len(arr) // 2):])
-
         arr = merge(left, right)
 
     return arr
